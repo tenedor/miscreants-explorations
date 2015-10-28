@@ -19,10 +19,11 @@ html(lang='en')
   block head
     head
       script(type='text/javascript', src='#{basePath}lib/jquery-2.1.4/jquery-2.1.4.min.js')
-        script(type='text/javascript', src='#{basePath}lib/underscore-1.7.0/underscore-1.7.0.min.js')
-          script(type='text/javascript', src='#{basePath}lib/backbone-1.1.2/backbone-1.1.2.min.js')
+      script(type='text/javascript', src='#{basePath}lib/underscore-1.7.0/underscore-1.7.0.min.js')
+      script(type='text/javascript', src='#{basePath}lib/backbone-1.1.2/backbone-1.1.2.min.js')
       link(rel='stylesheet', href='#{basePath}lib/bootstrap-3.3.5/css/bootstrap.min.css')
       link(rel='stylesheet', type='text/css', href='#{basePath}main.css')
+      script(type='text/javascript', src='#{basePath}js/page.js')
   block body
     -bodyAttributes = pageId ? {'id': pageId} : {}
     body&attributes(bodyAttributes)
