@@ -1,0 +1,33 @@
+block name
+  -name=""
+
+block pageId
+  -pageId = name ? name + "-page" : ""
+
+block basePath
+  -basePath = ""
+
+block relativePath
+  -relativePath = name ? name + "/" : ""
+
+block imgPath
+  -imgPathGlobal = basePath + "img/"
+  -imgPath = imgPathGlobal + relativePath
+
+doctype html
+html(lang='en')
+  block head
+    head
+      script(type='text/javascript', src='#{basePath}lib/jquery-2.1.4/jquery-2.1.4.min.js')
+        script(type='text/javascript', src='#{basePath}lib/underscore-1.7.0/underscore-1.7.0.min.js')
+          script(type='text/javascript', src='#{basePath}lib/backbone-1.1.2/backbone-1.1.2.min.js')
+      link(rel='stylesheet', href='#{basePath}lib/bootstrap-3.3.5/css/bootstrap.min.css')
+      link(rel='stylesheet', type='text/css', href='#{basePath}main.css')
+  block body
+    -bodyAttributes = pageId ? {'id': pageId} : {}
+    body&attributes(bodyAttributes)
+      block navigationBar
+        include navigation-bar.jade
+
+      #content
+        block content

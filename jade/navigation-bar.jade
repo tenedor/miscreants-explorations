@@ -1,0 +1,20 @@
+-basePath = basePath || ""
+
+-
+  linksSubmenu = [
+    ["fake link 1", "link1"],
+    ["fake link 2", "link2"],
+    ["fake link 3", "link3"],
+  ]
+
+#navigation-bar
+  ul#navigation-menu
+    li#navigation-menu-home.navigation-menu
+      a(href='#{basePath || "."}') Home
+    li#navigation-menu-links.navigation-menu.has-submenu
+      a(href='#') Some dropdown links
+      ul#links-submenu.menu-dropdown
+        each item in linksSubmenu
+          li.menu-dropdown
+            a(href='#{basePath}#{item[1]}') #{item[0]}
+#navigation-bar-shadow
