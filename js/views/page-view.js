@@ -1,9 +1,9 @@
 (function() {
 
-var root = this;
-var mcc = root.mcc = {};
+var util = mcc.util;
 
-var PageView = mcc.PageView = Backbone.View.extend({
+
+var PageView = mcc.PageView = mcc.View.extend({
 
   className: 'page-view',
 
@@ -12,7 +12,8 @@ var PageView = mcc.PageView = Backbone.View.extend({
   },
 
   template: '\
-    <p id="injected">This paragraph comes from PageView.</p>\
+    <h1 id="injected"><%= title %>.</h1>\
+    <p id="injected"><%= subtext %>.</p>\
   ',
 
   initialize: function() {
@@ -21,7 +22,7 @@ var PageView = mcc.PageView = Backbone.View.extend({
   render: function() {
     this.$el.empty();
 
-    this.$el.append(_.template(this.template));
+    this.$el.append(_.template(this.template)(this.model));
   }
 
 });

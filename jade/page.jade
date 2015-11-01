@@ -14,16 +14,41 @@ block imgPath
   -imgPathGlobal = basePath + "img/"
   -imgPath = imgPathGlobal + relativePath
 
+block cssIncludes
+  -
+    cssIncludes = [
+      "lib/bootstrap-3.3.5/css/bootstrap.min",
+      "main",
+    ]
+
+block jsIncludes
+  -
+    jsIncludes = [
+      "lib/jquery-2.1.4/jquery-2.1.4.min",
+      "lib/underscore-1.7.0/underscore-1.7.0.min",
+      "lib/backbone-1.1.2/backbone-1.1.2.min",
+
+      "js/root",
+      "js/util",
+      "js/wiring",
+      "js/object-manager",
+
+      "js/models/model",
+      "js/models/page-model",
+
+      "js/views/view",
+      "js/views/page-view",
+    ]
+
 doctype html
 html(lang='en')
   block head
     head
-      script(type='text/javascript', src='#{basePath}lib/jquery-2.1.4/jquery-2.1.4.min.js')
-      script(type='text/javascript', src='#{basePath}lib/underscore-1.7.0/underscore-1.7.0.min.js')
-      script(type='text/javascript', src='#{basePath}lib/backbone-1.1.2/backbone-1.1.2.min.js')
-      link(rel='stylesheet', href='#{basePath}lib/bootstrap-3.3.5/css/bootstrap.min.css')
-      link(rel='stylesheet', type='text/css', href='#{basePath}main.css')
-      script(type='text/javascript', src='#{basePath}js/page.js')
+      each path in cssIncludes
+        link(rel='stylesheet', type='text/css', href='#{basePath}#{path}.css')
+      each path in jsIncludes
+        script(type='text/javascript', src='#{basePath}#{path}.js')
+      block script
   block body
     -bodyAttributes = pageId ? {'id': pageId} : {}
     body&attributes(bodyAttributes)

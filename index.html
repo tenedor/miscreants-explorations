@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap-3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
     <script type="text/javascript" src="lib/jquery-2.1.4/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="lib/underscore-1.7.0/underscore-1.7.0.min.js"></script>
     <script type="text/javascript" src="lib/backbone-1.1.2/backbone-1.1.2.min.js"></script>
-    <link rel="stylesheet" href="lib/bootstrap-3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="main.css">
-    <script type="text/javascript" src="js/page.js"></script>
+    <script type="text/javascript" src="js/root.js"></script>
+    <script type="text/javascript" src="js/util.js"></script>
+    <script type="text/javascript" src="js/wiring.js"></script>
+    <script type="text/javascript" src="js/object-manager.js"></script>
+    <script type="text/javascript" src="js/models/model.js"></script>
+    <script type="text/javascript" src="js/models/page-model.js"></script>
+    <script type="text/javascript" src="js/views/view.js"></script>
+    <script type="text/javascript" src="js/views/page-view.js"></script>
+    <script type="text/javascript">
+      // onLoad entry point
+      $(document).ready(function() {
+        var pageModel = new mcc.PageModel();
+        var pageView = new mcc.PageView({model: pageModel});
+        pageView.render();
+        $('#page-root').append(pageView.el);
+      });
+    </script>
   </head>
   <body id="home-page">
     <div id="navigation-bar">
@@ -23,18 +39,7 @@
     </div>
     <div id="navigation-bar-shadow"></div>
     <div id="content">
-      <div id="page-root">
-        <h1>Home page</h1>
-        <p>hello</p>
-      </div>
-      <script>
-        // onLoad entry point
-        $(document).ready(function() {
-          var pageView = new mcc.PageView();
-          pageView.render();
-          $('#page-root').append(pageView.el);
-        });
-      </script>
+      <div id="page-root"></div>
     </div>
   </body>
 </html>
