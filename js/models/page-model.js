@@ -16,4 +16,4 @@ var PageModel = mcc.PageModel = mcc.Model.extend({
 
 });
 
-}).call(this);
+})();

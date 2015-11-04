@@ -21,4 +21,4 @@ var View = mcc.View = Backbone.View.extend({
 
 });
 
-}).call(this);
+})();

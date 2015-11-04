@@ -27,4 +27,4 @@ var PageView = mcc.PageView = mcc.View.extend({
 
 });
 
-}).call(this);
+})();
