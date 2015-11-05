@@ -5,12 +5,14 @@ var util = mcc.util;
 
 var PostModel = mcc.PostModel = mcc.Model.extend({
 
-  initialize: function(content) {
+  initialize: function() {
     this.__super__.initialize();
-
-    this.content = content; // add getsetter
-    this.comments = []; // add getsetter
   },
+
+  defaults: _.extend({}, mcc.Model.prototype.defaults, {
+    content: undefined, // add getsetter
+    comments: [] // add getsetter
+  })
 
   addComment: function(content) {
     this.comments.append(content);
