@@ -44,10 +44,10 @@ Model.getSetterForAttr = function(attr) {
   return getSetter;
 };
 
-Model.expandGetSetters = function(attrs) {
-  _.each(attrs, function(value, key) {
+Model.expandGetSetters = function() {
+  _.each(this.prototype, function(value, key) {
     if (value === Model.getSetterFlag) {
-      attrs[key] = Model.getSetterForAttr(key);
+      this.prototype[key] = Model.getSetterForAttr(key);
     };
   });
 };
