@@ -16,7 +16,7 @@ var CommentView = mcc.CommentView = mcc.View.extend({
   render: function() {
     this.$el.empty();
 
-    this.$el.append(_.template(this.template)(this.model));
+    this.$el.append(_.template(this.template)(this.model)); //Eric says that this is wrong
   }
 
 });
