@@ -9,18 +9,47 @@ var Model = mcc.Model = function(data, options) {
   //if (options.collection) this.collection = options.collection;
 
   data = _.defaults({}, data, _.result(this, 'defaults'));
-  _.extend(this, data); // TODO - make this safer
+  this.setData(data);
   this.initialize.apply(this, arguments);
+};
+
+Model.getSetterFlag = {};
+
+Model.getSetterForAttr = function(attr) {
+  var getSetter = function(val) {
+    if (val !== undefined) {
+      this._data[attr] = val;
+    };
+    return this._data[attr];
+  };
+  getSetter.isGetSetter = true;
+  return getSetter;
+};
+
+Model.extend = Backbone.Model.extend;
+
+Model.expandGetSetters = function(attrs) {
+  _.each(attrs, function(value, key) {
+    if (value === Model.getSetterFlag) {
+      attrs[key] = Model.getSetterForAttr(key);
+    };
+  });
 };
 
 _.extend(Model.prototype, Backbone.Events, {
 
   defaults: {},
 
-  initialize: function() {}
+  initialize: function() {},
+
+  setData: function(data) {
+    _.each(data, function(value, key) {
+      util.assert(this[key] && this[key].isGetSetter,
+          key + " is not an attribute you can set!");
+      this[key](value);
+    });
+  }
 
 });
-
-Model.extend = Backbone.Model.extend;
 
 })();
