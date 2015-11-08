@@ -2,3 +2,4 @@
 *.DS_Store
 jade/*.html
 node_modules
+*.swp
