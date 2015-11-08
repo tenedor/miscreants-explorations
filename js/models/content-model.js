@@ -2,7 +2,8 @@
 
 var util = mcc.util;
 
-var getSetterFlag = mcc.Model.getSetterFlag;
+var Model = mcc.Model;
+var getSetterFlag = Model.getSetterFlag;
 
 
 var ContentModel = mcc.ContentModel = mcc.Model.extend({
@@ -19,5 +20,7 @@ var ContentModel = mcc.ContentModel = mcc.Model.extend({
   imgPath: getSetterFlag
 
 });
+
+ContentModel.expandGetSetters();
 
 })();

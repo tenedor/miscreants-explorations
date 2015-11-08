@@ -2,6 +2,9 @@
 
 var util = mcc.util;
 
+var Model = mcc.Model;
+var getSetterFlag = Model.getSetterFlag;
+
 
 var PageModel = mcc.PageModel = mcc.Model.extend({
 
@@ -15,5 +18,7 @@ var PageModel = mcc.PageModel = mcc.Model.extend({
   })
 
 });
+
+PageModel.expandGetSetters();
 
 })();

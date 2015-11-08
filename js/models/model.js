@@ -52,4 +52,6 @@ Model.expandGetSetters = function() {
   });
 };
 
+Model.expandGetSetters();
+
 })();

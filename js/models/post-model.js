@@ -2,6 +2,9 @@
 
 var util = mcc.util;
 
+var Model = mcc.Model;
+var getSetterFlag = Model.getSetterFlag;
+
 
 var PostModel = mcc.PostModel = mcc.Model.extend({
 
@@ -22,5 +25,7 @@ var PostModel = mcc.PostModel = mcc.Model.extend({
   comments: getSetterFlag
 
 });
+
+PostModel.expandGetSetters();
 
 })();
