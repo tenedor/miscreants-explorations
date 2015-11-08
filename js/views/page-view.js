@@ -11,10 +11,10 @@ var PageView = mcc.PageView = mcc.View.extend({
     'click #image':               'triggerShowContent',
   },
 
-  template: '\
+  template: _.template('\
     <h1 id="injected"><%= title %>.</h1>\
     <p id="injected"><%= subtext %>.</p>\
-  ',
+  '),
 
   initialize: function() {
   },
@@ -22,7 +22,7 @@ var PageView = mcc.PageView = mcc.View.extend({
   render: function() {
     this.$el.empty();
 
-    this.$el.append(_.template(this.template)(this.model)); //Eric says that this is wrong
+    this.$el.append(this.template(this.model._data));
   }
 
 });

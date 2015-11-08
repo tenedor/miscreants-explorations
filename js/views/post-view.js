@@ -11,12 +11,12 @@ var PostView = mcc.PostView = mcc.View.extend({
     'click #image':               'triggerShowContent',
   },
 
-  template: '\
+  template: _.template('\
     <p id="injected">Start of post.</p>\
     <div id="contentContainer"></div>\
     <div id="commentListContainer"></div>\
     <p id="injected">End of post.</p>
-  ',
+  '),
 
   initialize: function() {
   },
@@ -24,7 +24,7 @@ var PostView = mcc.PostView = mcc.View.extend({
   render: function() {
     this.$el.empty();
 
-    this.$el.append(_.template(this.template));
+    this.$el.append(this.template);
 
     // TODO render content
     content.render();
