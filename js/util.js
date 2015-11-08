@@ -42,4 +42,10 @@ util.toString = function(value) {
   // it was that hard javascript.
 };
 
+
+// Full image path given a relative path
+util.pathForImg = function(relativePath) {
+  return "img/" + relativePath;
+};
+
 })();

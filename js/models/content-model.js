@@ -17,7 +17,11 @@ var ContentModel = mcc.ContentModel = mcc.Model.extend({
   author: getSetterFlag,
   timestamp: getSetterFlag,
   text: getSetterFlag,
-  imgPath: getSetterFlag
+  imgPath: getSetterFlag,
+
+  fullImagePath: function() {
+    return util.pathForImg(this.imgPath());
+  }
 
 });
 
