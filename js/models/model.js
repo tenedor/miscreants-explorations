@@ -13,29 +13,6 @@ var Model = mcc.Model = function(data, options) {
   this.initialize.apply(this, arguments);
 };
 
-Model.getSetterFlag = {};
-
-Model.getSetterForAttr = function(attr) {
-  var getSetter = function(val) {
-    if (val !== undefined) {
-      this._data[attr] = val;
-    };
-    return this._data[attr];
-  };
-  getSetter.isGetSetter = true;
-  return getSetter;
-};
-
-Model.extend = Backbone.Model.extend;
-
-Model.expandGetSetters = function(attrs) {
-  _.each(attrs, function(value, key) {
-    if (value === Model.getSetterFlag) {
-      attrs[key] = Model.getSetterForAttr(key);
-    };
-  });
-};
-
 _.extend(Model.prototype, Backbone.Events, {
 
   defaults: {},
@@ -51,5 +28,28 @@ _.extend(Model.prototype, Backbone.Events, {
   }
 
 });
+
+Model.extend = Backbone.Model.extend;
+
+Model.getSetterFlag = {};
+
+Model.getSetterForAttr = function(attr) {
+  var getSetter = function(val) {
+    if (val !== undefined) {
+      this._data[attr] = val;
+    };
+    return this._data[attr];
+  };
+  getSetter.isGetSetter = true;
+  return getSetter;
+};
+
+Model.expandGetSetters = function(attrs) {
+  _.each(attrs, function(value, key) {
+    if (value === Model.getSetterFlag) {
+      attrs[key] = Model.getSetterForAttr(key);
+    };
+  });
+};
 
 })();
