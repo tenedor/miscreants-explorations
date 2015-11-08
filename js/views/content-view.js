@@ -12,10 +12,12 @@ var ContentView = mcc.ContentView = mcc.View.extend({
   },
 
   textTemplate: '\
+    <p id="injected">CONTENT TIME</p>\
     <p id="injected"><%= text %>.</p>\
   ',
 
   imgTemplate: '\
+    <p id="injected">CONTENT TIME</p>\
     <img id="injected" src="<%= imgPath %>">\
   ',
 
