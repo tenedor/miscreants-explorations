@@ -8,6 +8,7 @@ var Model = mcc.Model = function(data, options) {
   options || (options = {});
   //if (options.collection) this.collection = options.collection;
 
+  this._data = {};
   data = _.defaults({}, data, _.result(this, 'defaults'));
   this.setData(data);
   this.initialize.apply(this, arguments);
@@ -20,10 +21,11 @@ _.extend(Model.prototype, Backbone.Events, {
   initialize: function() {},
 
   setData: function(data) {
+    var that = this;
     _.each(data, function(value, key) {
-      util.assert(this[key] && this[key].isGetSetter,
+      util.assert(that[key] && that[key].isGetSetter,
           key + " is not an attribute you can set!");
-      this[key](value);
+      that[key](value);
     });
   }
 
@@ -45,9 +47,10 @@ Model.getSetterForAttr = function(attr) {
 };
 
 Model.expandGetSetters = function() {
+  var that = this;
   _.each(this.prototype, function(value, key) {
     if (value === Model.getSetterFlag) {
-      this.prototype[key] = Model.getSetterForAttr(key);
+      that.prototype[key] = Model.getSetterForAttr(key);
     };
   });
 };
