@@ -15,7 +15,10 @@ var PageModel = mcc.PageModel = mcc.Model.extend({
   defaults: _.extend({}, mcc.Model.prototype.defaults, {
     title: "Home Page",
     subtext: "welcome to the home page"
-  })
+  }),
+
+  title: getSetterFlag,
+  subtext: getSetterFlag
 
 });
 
