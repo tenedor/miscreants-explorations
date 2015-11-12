@@ -15,7 +15,7 @@ var PostView = mcc.PostView = mcc.View.extend({
     <p id="injected">Start of post.</p>\
     <div id="contentContainer"></div>\
     <div id="commentListContainer"></div>\
-    <p id="injected">End of post.</p>
+    <p id="injected">End of post.</p>\
   '),
 
   initialize: function() {
