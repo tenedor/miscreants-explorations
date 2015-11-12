@@ -45,7 +45,39 @@ var fold = magic.fold = function() {
 var history = [];
 
 var doMagic = magic.doMagic = function(command) {
-  history += [eval(command)];
+  var parsed;
+  var inQuotes;
+  var unique_string = "_______________________dilapidated_soliloquizing_elephant_____________________"; // appropriately selected variable name
+  // today we are doing the parsing
+  // "map(history[1], '_.something(a, b, c)')" => "map(history[1], function(x) { x.something(a, b, c) })"
+
+  // extract and replace substrings surrounded by ' marks
+  // I don't know regex so we're explicitly writing a finite state transducer
+  inQuotes = false;
+  for (var i = 0; i < command.length; i++) {
+    if (command.charAt(i) === "'") {
+      if (!inQuotes) {
+        // create function with appropriately selected variable name
+        parsed += "function(" + unique_string + ") {";
+        inQuotes = true;
+      } else {
+        // end function with appropriately selected variable name
+        parsed += "}";
+        inQuotes = false;
+      }
+    } else {
+      // replace wildcard with appropriately selected variable name
+      // if you're trying to use this with bitwise XOR in JS, you deserve to be hit by a dilapidated soliloquizing elephant
+      // so we will interpret such as requests for this
+      if (inQuotes && command.charAt(i) === "^") {
+        parsed += unique_string;
+      } else {
+        parsed += command.charAt(i);
+      }
+    }
+  }
+
+  history += [eval(parsed)];
 }
 
 })();
