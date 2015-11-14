@@ -1,27 +1,31 @@
 (function() {
 
 var util = mcc.util;
-
+var List = mcc.List;
 var Model = mcc.Model;
+var ContentModel = mcc.ContentModel;
+
 var getSetterFlag = Model.getSetterFlag;
 
 
-var PostModel = mcc.PostModel = mcc.Model.extend({
+var PostModel = mcc.PostModel = ContentModel.extend({
 
-  initialize: function() {
-    this.__super__.initialize();
+  initialize: function(data, options) {
+    this.__super__.initialize.apply(this, arguments);
+
+    if (util.isArray(this.comments)) {
+      this.comments = new List(this.comments);
+    };
   },
 
-  defaults: _.extend({}, mcc.Model.prototype.defaults, {
-    content: undefined, // add getsetter
-    comments: [] // add getsetter
+  defaults: _.extend({}, ContentModel.prototype.defaults, {
+    comments: []
   }),
 
-  addComment: function(content) {
-    this.comments.append(content);
+  addComment: function(comment) {
+    this.comments.addMember(comment);
   },
 
-  content: getSetterFlag,
   comments: getSetterFlag
 
 });

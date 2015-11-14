@@ -14,12 +14,11 @@ var List = mcc.List = function(membersArray) {
 
 _.extend(List.prototype, Backbone.Events, {
 
-  initialize: function() {},
+  initialize: function(membersArray) {},
 
   addMembers: function(membersArray) {
     util.assert(util.isArray(membersArray), "membersArray must be an array");
-    var that = this;
-    _.each(membersArray, that.addMember);
+    _.each(membersArray, _.bind(this.addMember, this));
   },
 
   addMember: function(member) {
@@ -38,6 +37,10 @@ _.extend(List.prototype, Backbone.Events, {
 
   each: function(fn) {
     _.each(this._members, fn);
+  },
+
+  map: function(fn) {
+    return new List(_.map(this._members, fn));
   }
 
 });

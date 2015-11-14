@@ -13,11 +13,16 @@ block script
   script(type='text/javascript')
     | // onLoad entry point
     | $(document).ready(function() {
-    |   var pageModel = new mcc.PageModel();
-    |   var pageView = new mcc.PageView({model: pageModel});
-    |   pageView.render();
-    |   $('#page-root').append(pageView.el);
+    |   var pageModel, pageView;
+    | 
+    |   mcc.data.initialize();
+    | 
+    |   pageModel = new mcc.PageModel({
+    |     user: mcc.data.models.user,
+    |     posts: mcc.data.models.posts
+    |   });
+    | 
+    |   pageView = new mcc.PageView({model: pageModel});
+    | 
+    |   $('body').append(pageView.render().el);
     | });
-
-block content
-  #page-root

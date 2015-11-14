@@ -12,40 +12,35 @@
     <script type="text/javascript" src="js/object-manager.js"></script>
     <script type="text/javascript" src="js/list.js"></script>
     <script type="text/javascript" src="js/models/model.js"></script>
+    <script type="text/javascript" src="js/models/user-model.js"></script>
     <script type="text/javascript" src="js/models/content-model.js"></script>
     <script type="text/javascript" src="js/models/post-model.js"></script>
     <script type="text/javascript" src="js/models/page-model.js"></script>
     <script type="text/javascript" src="js/views/view.js"></script>
+    <script type="text/javascript" src="js/views/new-content-view.js"></script>
     <script type="text/javascript" src="js/views/content-view.js"></script>
     <script type="text/javascript" src="js/views/comment-view.js"></script>
     <script type="text/javascript" src="js/views/post-view.js"></script>
     <script type="text/javascript" src="js/views/page-view.js"></script>
+    <script type="text/javascript" src="js/data.js"></script>
     <script type="text/javascript">
       // onLoad entry point
       $(document).ready(function() {
-        var pageModel = new mcc.PageModel();
-        var pageView = new mcc.PageView({model: pageModel});
-        pageView.render();
-        $('#page-root').append(pageView.el);
+        var pageModel, pageView;
+       
+        mcc.data.initialize();
+       
+        pageModel = new mcc.PageModel({
+          user: mcc.data.models.user,
+          posts: mcc.data.models.posts
+        });
+       
+        pageView = new mcc.PageView({model: pageModel});
+       
+        $('body').append(pageView.render().el);
       });
     </script>
   </head>
   <body id="home-page">
-    <div id="navigation-bar">
-      <ul id="navigation-menu">
-        <li id="navigation-menu-home" class="navigation-menu"><a href=".">Home</a></li>
-        <li id="navigation-menu-links" class="navigation-menu has-submenu"><a href="#">Some dropdown links</a>
-          <ul id="links-submenu" class="menu-dropdown">
-            <li class="menu-dropdown"><a href="link1">fake link 1</a></li>
-            <li class="menu-dropdown"><a href="link2">fake link 2</a></li>
-            <li class="menu-dropdown"><a href="link3">fake link 3</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <div id="navigation-bar-shadow"></div>
-    <div id="content">
-      <div id="page-root"></div>
-    </div>
   </body>
 </html>

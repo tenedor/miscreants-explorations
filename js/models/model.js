@@ -6,7 +6,6 @@ var util = mcc.util;
 var Model = mcc.Model = function(data, options) {
   data || (data = {});
   options || (options = {});
-  //if (options.collection) this.collection = options.collection;
 
   this._data = {};
   data = _.defaults({}, data, _.result(this, 'defaults'));
@@ -18,7 +17,7 @@ _.extend(Model.prototype, Backbone.Events, {
 
   defaults: {},
 
-  initialize: function() {},
+  initialize: function(data, options) {},
 
   setData: function(data) {
     var that = this;

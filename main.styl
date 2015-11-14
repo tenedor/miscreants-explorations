@@ -73,7 +73,7 @@ for lit in literals
     literal(lit.s, lit.p, val)
 
 
-#navigation-bar
+#fixed-header
   position: fixed
   top: 0
   left: 0
@@ -82,70 +82,84 @@ for lit in literals
   border-bottom: 1px #ddd solid
   background-color: white
   z-index: 10
+  padding: 0 40px
 
-  a
-    &, &:visited
-      color: #999
-
-    &:hover
-      color: #444
-
-  .navigation-menu
-    position: relative
+  .left, .right
+    width: 50%
+    height: 100%
     float: left
-    display: inline
-    padding: 13px 5px
-    vertical-align: baseline
 
-    > a
-      display: block
-      position: relative
-      padding: 2px 10px
-      width: 100%
-      box-sizing: border-box
+  .right
+    > *
+      float: right
 
-      &:hover
-        padding-left: 5px
-        border-left: 5px #ccc solid
+  h1
+    margin: 5px
+    color: #666
 
-    > ul
-      display: none
+  input.username
+    margin: 9px 0
+    height: 31px
+    padding: 5px 10px
+    max-width: 165px
 
-    &:hover > ul
-      display: block
-
-    ul.menu-dropdown
-      position: absolute
-      left: 0px
-      top: 48px
-      width: 180px
-      padding: 3px
-      background-color: white
-
-      > li
-        float: left
-        position: relative
-        display: inline
-        width: 100%
-        padding: 3px 0px
-
-        > a
-          display: block
-          position: relative
-          padding: 2px 10px
-          width: 100%
-          box-sizing: border-box
-
-          &:hover
-            padding-left: 5px
-            border-left: 5px #ccc solid
-
-#navigation-bar-shadow
+#fixed-header-shadow
   position: relative
   margin-bottom: 50px
 
-#content
+#page-root
   max-width: 600px
   min-width: 400px
   display: block
   margin: 0px auto
+
+
+
+post-color = #f3f3f3
+inner-vertical-spacing = 10px
+inner-horizontal-spacing = 20px
+outer-vertical-spacing = 20px
+
+post-styling()
+  margin-bottom: outer-vertical-spacing
+  padding: inner-vertical-spacing inner-horizontal-spacing
+  border-radius: 4px
+  border: 1px solid #ccc
+  background-color: post-color
+
+#newsfeed
+  width: 400px
+  margin-left: auto
+  margin-right: auto
+
+#new-post
+  .new-content-view
+    post-styling()
+
+    .fields > *
+      margin-bottom inner-vertical-spacing
+
+    .post-button-container
+      display: inline-block
+      width: 100%
+
+      // floating the button inexplicably adds 5px bottom margin, so undo it
+      margin-bottom: -5px
+
+      .post-button
+        float: right
+
+.post-view
+  post-styling()
+
+  .content
+    .header
+      color: #888
+      margin-bottom: inner-vertical-spacing
+
+      .author
+        font-weight: 700
+
+    .image img
+      max-width: 100%
+      max-width: 360px

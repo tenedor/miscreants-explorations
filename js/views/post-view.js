@@ -1,37 +1,30 @@
 (function() {
 
 var util = mcc.util;
+var View = mcc.View;
+var ContentView = mcc.ContentView;
 
 
-var PostView = mcc.PostView = mcc.View.extend({
+var PostView = mcc.PostView = View.extend({
 
   className: 'post-view',
 
-  events: {
-    'click #image':               'triggerShowContent',
-  },
-
   template: _.template('\
-    <p id="injected">Start of post.</p>\
-    <div id="contentContainer"></div>\
-    <div id="commentListContainer"></div>\
-    <p id="injected">End of post.</p>\
+    <div class="content"></div>\
+    <div class="comments"></div>\
   '),
 
   initialize: function() {
+    this.contentView = new ContentView({model: this.model});
   },
 
   render: function() {
     this.$el.empty();
 
-    this.$el.append(this.template);
+    this.$el.append(this.template(this.model._data));
+    this.$('.content').append(this.contentView.render().el);
 
-    // TODO render content
-    content.render();
-    // TODO figure out how to append rendered version of things
-    this.$("#contentContainer").append(content.$el);
-
-    // TODO render comment list
+    return this;
   }
 
 });

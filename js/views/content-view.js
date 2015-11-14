@@ -1,39 +1,37 @@
 (function() {
 
 var util = mcc.util;
+var View = mcc.View;
 
 
-var ContentView = mcc.ContentView = mcc.View.extend({
+var ContentView = mcc.ContentView = View.extend({
 
   className: 'content-view',
 
-  events: {
-
-  },
-
-  textTemplate: _.template('\
-    <p id="injected">CONTENT TIME</p>\
-    <p id="injected"><%= text %>.</p>\
+  template: _.template('\
+    <div class="header">\
+      Post from <span class="author"><%= author %></span>\
+      at <span class="timestamp"><%= timestamp %></span>\
+    </div>\
+    <p class="text"><%= text %></p>\
+    <div class="image"></div>\
   '),
-
-  imgTemplate: _.template('\
-    <p id="injected">CONTENT TIME</p>\
-    <img id="injected" src="<%= imgPath %>">\
-  '),
-
-  initialize: function() {
-  },
 
   render: function() {
+    var src;
+
     this.$el.empty();
 
-    if (this.model.imgPath() === undefined) {
-      // is a piece of text
-      this.$el.append(textTemplate(this.model._data));
-    } else {
-      // is an image
-      this.$el.append(imgTemplate({imgPath : this.model.fullImagePath()}));
-    }
+    this.$el.append(this.template(this.model._data));
+
+    if (this.model.hasImage()) {
+      src = this.model.fullImagePath();
+      this.$('.image')
+          .addClass('has-image')
+          .append($('<img src="' + src + '">'));
+    };
+
+    return this;
   }
 
 });

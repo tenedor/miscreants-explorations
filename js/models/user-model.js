@@ -6,16 +6,16 @@ var Model = mcc.Model;
 var getSetterFlag = Model.getSetterFlag;
 
 
-var PageModel = mcc.PageModel = Model.extend({
+var UserModel = mcc.UserModel = Model.extend({
 
   defaults: _.extend({}, Model.prototype.defaults, {
+    name: ""
   }),
 
-  user: getSetterFlag,
-  posts: getSetterFlag
+  name: getSetterFlag
 
 });
 
-PageModel.expandGetSetters();
+UserModel.expandGetSetters();
 
 })();
