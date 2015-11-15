@@ -25,9 +25,9 @@ var PageView = mcc.PageView = View.extend({
       </div>\
     </div>\
     <div id="fixed-header-shadow"></div>\
-    <div id="newsfeed">\
-      <div id="new-post"></div>\
-      <div id="posts"></div>\
+    <div class="post-feed">\
+      <div class="new-post"></div>\
+      <div class="posts"></div>\
     </div>\
   '),
 
@@ -48,7 +48,7 @@ var PageView = mcc.PageView = View.extend({
 
     this.$el.append(this.template(this.model._data));
     this.$('input.username').val(this.model.user().name());
-    this.$('#new-post').append(this.newPost.render().el);
+    this.$('.new-post').append(this.newPost.render().el);
 
     this.renderPosts();
 
@@ -58,10 +58,10 @@ var PageView = mcc.PageView = View.extend({
   renderPosts: function() {
     var that = this;
 
-    this.$('#posts').empty();
+    this.$('.posts').empty();
 
     this.postViews.each(function(postView) {
-      that.$('#posts').prepend(postView.render().el);
+      that.$('.posts').prepend(postView.render().el);
     });
   },
 

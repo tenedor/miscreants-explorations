@@ -129,27 +129,27 @@ hr {
   display: block;
   margin: 0px auto;
 }
-#newsfeed {
+.post-feed {
   width: 400px;
   margin-left: auto;
   margin-right: auto;
 }
-#new-post .new-content-view {
+.new-post .new-content-view {
   margin-bottom: 20px;
   padding: 10px 20px;
   border-radius: 4px;
   border: 1px solid #ccc;
   background-color: #f3f3f3;
 }
-#new-post .new-content-view .fields > * {
+.new-post .new-content-view .fields > * {
   margin-bottom: 10px;
 }
-#new-post .new-content-view .post-button-container {
+.new-post .new-content-view .post-button-container {
   display: inline-block;
   width: 100%;
   margin-bottom: -5px;
 }
-#new-post .new-content-view .post-button-container .post-button {
+.new-post .new-content-view .post-button-container .post-button {
   float: right;
 }
 .post-view {
