@@ -2,6 +2,7 @@
 
 var util = mcc.util;
 var View = mcc.View;
+var magic = mcc.magic;
 var MagicBarView = mcc.MagicBarView;
 
 
@@ -38,10 +39,16 @@ var MagicFeedView = mcc.MagicFeedView = View.extend({
   },
 
   newQuery: function(query) {
+    var result = magic.doMagic(query);
+
     var queryNode = $('<div class="magic-result">');
 
     // for now, do the dumbest thing of shoving the query straight into html
-    queryNode.append(util.toString(query));
+    queryNode.append(util.toString(JSON.stringify(result)));
+    queryNode.append($('<br>'));
+    queryNode.append($('<br>'));
+    queryNode.append($('<br>'));
+    queryNode.append($('<br>'));
 
     this.magicResults.prepend(queryNode);
 
