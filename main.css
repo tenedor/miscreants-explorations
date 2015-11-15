@@ -123,6 +123,18 @@ hr {
   position: relative;
   margin-bottom: 50px;
 }
+.page-view {
+  min-width: 840px;
+}
+.page-view .left,
+.page-view .right {
+  width: 50%;
+  float: left;
+}
+.magic-feed {
+  width: 400px;
+  min-height: 1px;
+}
 .post-feed {
   width: 400px;
   margin-left: auto;

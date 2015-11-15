@@ -5,6 +5,7 @@ var PostModel = mcc.PostModel;
 var View = mcc.View;
 var NewContentView = mcc.NewContentView;
 var PostView = mcc.PostView;
+var MagicFeedView = mcc.MagicFeedView;
 
 
 var PageView = mcc.PageView = View.extend({
@@ -25,9 +26,14 @@ var PageView = mcc.PageView = View.extend({
       </div>\
     </div>\
     <div id="fixed-header-shadow"></div>\
-    <div class="post-feed">\
-      <div class="new-post"></div>\
-      <div class="posts"></div>\
+    <div class="left">\
+      <div class="magic-feed"></div>\
+    </div>\
+    <div class="right">\
+      <div class="post-feed">\
+        <div class="new-post"></div>\
+        <div class="posts"></div>\
+      </div>\
     </div>\
   '),
 
@@ -45,6 +51,8 @@ var PageView = mcc.PageView = View.extend({
     this.postViews = this.model.posts().map(function(postModel) {
       return new PostView({model: postModel});
     });
+
+    this.magicFeedView = new MagicFeedView();
   },
 
   render: function() {
@@ -52,6 +60,7 @@ var PageView = mcc.PageView = View.extend({
 
     this.$el.append(this.template(this.model._data));
     this.$('input.username').val(this.model.user().name());
+    this.$('.magic-feed').append(this.magicFeedView.render().el);
     this.$('.new-post').append(this.newPost.render().el);
 
     this.renderPosts();
