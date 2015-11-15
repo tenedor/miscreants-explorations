@@ -5,9 +5,9 @@ var View = mcc.View;
 var ContentView = mcc.ContentView;
 
 
-var PostView = mcc.PostView = View.extend({
+var PostView = mcc.PostView = ContentView.extend({
 
-  className: 'post-view',
+  className: ContentView.prototype.className + ' post-view',
 
   template: _.template('\
     <div class="content"></div>\
