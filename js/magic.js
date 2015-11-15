@@ -14,7 +14,7 @@ var magic = mcc.magic = {};
 var map = magic.map = function(collection, fun) {
   var newcoll = [];
   for (var i = 0; i < collection.length; i++) {
-    newcoll += [fun(collection[i])];
+    newcoll.push(fun(collection[i])); // TODO this has to operate on collection[i]._data but spit out something mapped
   }
   return newcoll;
 };
@@ -26,8 +26,8 @@ var map = magic.map = function(collection, fun) {
 var filter = magic.filter = function(collection, pred) {
   var newcoll = [];
   for (var i = 0; i < collection.length; i++) {
-    if (pred(collection[i])) {
-      newcoll += [collection[i]];
+    if (pred(collection[i])) { // TODO operate on collection[i]._data
+      newcoll.push(collection[i]);
     }
   }
   return newcoll;
@@ -89,7 +89,7 @@ var doMagic = magic.doMagic = function(command) {
   }
 
   result = eval(parsed);
-  history += [result];
+  history.push(result);
   return result;
 }
 
