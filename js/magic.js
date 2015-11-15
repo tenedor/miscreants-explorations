@@ -44,6 +44,9 @@ var fold = magic.fold = function() {
 // a consistent way of storing the results of computations and making them available to refer to later
 var history = magic.history = [];
 
+// shorthand for everything that can be used during mappings
+var everything = mcc.objManager.everything;
+
 var doMagic = magic.doMagic = function(command) {
   var parsed = "";
   var result;
