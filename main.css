@@ -123,12 +123,6 @@ hr {
   position: relative;
   margin-bottom: 50px;
 }
-#page-root {
-  max-width: 600px;
-  min-width: 400px;
-  display: block;
-  margin: 0px auto;
-}
 .post-feed {
   width: 400px;
   margin-left: auto;
