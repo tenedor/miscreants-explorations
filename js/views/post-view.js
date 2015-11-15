@@ -29,7 +29,7 @@ var PostView = mcc.PostView = ContentView.extend({
     });
 
     this.newComment = new NewContentView({
-      model: mcc.data.models.user,
+      model: mcc.data.models.user, // TODO - don't reach into mcc.data
       ModelConstructor: CommentModel,
       textInputPrompt: "reply",
       buttonName: "Comment"
