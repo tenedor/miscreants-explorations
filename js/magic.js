@@ -42,12 +42,12 @@ var fold = magic.fold = function() {
 
 // TODO history management
 // a consistent way of storing the results of computations and making them available to refer to later
-var history = [];
+var history = magic.history = [];
 
 var doMagic = magic.doMagic = function(command) {
-  var parsed;
+  var parsed = "";
   var inQuotes;
-  var unique_string = "_______________________dilapidated_soliloquizing_elephant_____________________"; // appropriately selected variable name
+  var unique_string = "__________________dilapidated_soliloquizing_elephant__________________"; // appropriately selected variable name
   // today we are doing the parsing
   // "map(history[1], '_.something(a, b, c)')" => "map(history[1], function(x) { x.something(a, b, c) })"
 
@@ -58,11 +58,11 @@ var doMagic = magic.doMagic = function(command) {
     if (command.charAt(i) === "'") {
       if (!inQuotes) {
         // create function with appropriately selected variable name
-        parsed += "function(" + unique_string + ") {";
+        parsed += "function(" + unique_string + ") { ";
         inQuotes = true;
       } else {
         // end function with appropriately selected variable name
-        parsed += "}";
+        parsed += " }";
         inQuotes = false;
       }
     } else {
@@ -75,6 +75,13 @@ var doMagic = magic.doMagic = function(command) {
         parsed += command.charAt(i);
       }
     }
+  }
+
+  console.log(parsed);
+
+  if (inQuotes) {
+    console.log("you are missing a closing single quote");
+    return;
   }
 
   history += [eval(parsed)];
