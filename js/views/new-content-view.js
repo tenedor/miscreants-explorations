@@ -10,18 +10,20 @@ var NewContentView = mcc.NewContentView = View.extend({
   className: 'new-content-view',
 
   events: {
-    'click .post-button': 'createPost',
+    'click .submit-button': 'createContent',
   },
 
   template: _.template('\
     <div class="fields">\
-      <textarea name="text" placeholder="share your struggles"\
+      <textarea name="text" placeholder="<%= textInputPrompt %>"\
           class="form-control"></textarea>\
-      <input type="text" name="img-path" placeholder="add an image"\
+      <input type="text" name="img-path" placeholder="<%= imageInputPrompt %>"\
           class="form-control"></input>\
     </div>\
-    <div class="post-button-container">\
-      <a type="submit" class="btn btn-default post-button">Post</a>\
+    <div class="submit-button-container">\
+      <a type="submit" class="btn btn-default submit-button">\
+        <%= buttonName %>\
+      </a>\
     </div>\
   '),
 
@@ -31,14 +33,21 @@ var NewContentView = mcc.NewContentView = View.extend({
   },
 
   render: function() {
+    var parameters;
+
     this.$el.empty();
 
-    this.$el.append(this.template());
+    parameters = _.defaults({}, this.options, {
+      textInputPrompt: "add some text",
+      imageInputPrompt: "add an image",
+      buttonName: "Create"
+    });
+    this.$el.append(this.template(parameters));
 
     return this;
   },
 
-  createPost: function() {
+  createContent: function() {
     var model = new this.ModelConstructor();
 
     model.author(this.model.name());
@@ -46,7 +55,7 @@ var NewContentView = mcc.NewContentView = View.extend({
     model.text(this.$('[name="text"]').val());
     model.imgPath(this.$('[name="img-path"]').val());
 
-    this.trigger('content:posted', model);
+    this.trigger('content:created', model);
   },
 
   reset: function() {

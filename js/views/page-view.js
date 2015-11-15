@@ -36,9 +36,11 @@ var PageView = mcc.PageView = View.extend({
 
     this.newPost = new NewContentView({
       model: this.model.user(),
-      ModelConstructor: PostModel
+      ModelConstructor: PostModel,
+      textInputPrompt: "share your struggles",
+      buttonName: "Post"
     });
-    this.newPost.on('content:posted', _.bind(this.addPost, this));
+    this.newPost.on('content:created', _.bind(this.addPost, this));
 
     this.postViews = this.model.posts().map(function(postModel) {
       return new PostView({model: postModel});

@@ -144,12 +144,12 @@ hr {
 .new-post .new-content-view .fields > * {
   margin-bottom: 10px;
 }
-.new-post .new-content-view .post-button-container {
+.new-post .new-content-view .submit-button-container {
   display: inline-block;
   width: 100%;
   margin-bottom: -5px;
 }
-.new-post .new-content-view .post-button-container .post-button {
+.new-post .new-content-view .submit-button-container .submit-button {
   float: right;
 }
 .post-view {
