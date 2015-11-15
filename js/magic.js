@@ -46,6 +46,7 @@ var history = magic.history = [];
 
 var doMagic = magic.doMagic = function(command) {
   var parsed = "";
+  var result;
   var inQuotes;
   var unique_string = "__________________dilapidated_soliloquizing_elephant__________________"; // appropriately selected variable name
   // today we are doing the parsing
@@ -84,7 +85,9 @@ var doMagic = magic.doMagic = function(command) {
     return;
   }
 
-  history += [eval(parsed)];
+  result = eval(parsed);
+  history += [result];
+  return result;
 }
 
 })();
