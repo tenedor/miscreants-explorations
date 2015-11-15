@@ -13,8 +13,8 @@ var PostModel = mcc.PostModel = ContentModel.extend({
   initialize: function(data, options) {
     this.__super__.initialize.apply(this, arguments);
 
-    if (util.isArray(this.comments)) {
-      this.comments = new List(this.comments);
+    if (util.isArray(this.comments())) {
+      this.comments(new List(this.comments()));
     };
   },
 
