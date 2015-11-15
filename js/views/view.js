@@ -13,7 +13,9 @@ var View = mcc.View = Backbone.View.extend({
     <p class="injected">This paragraph comes from View.</p>\
   '),
 
-  initialize: function() {},
+  initialize: function(options) {
+    this.options = _.omit(options, ['model', 'events']);
+  },
 
   render: function() {
     this.$el.empty();
