@@ -1,27 +1,12 @@
 (function() {
 
 var util = mcc.util;
-var View = mcc.View;
+var ContentView = mcc.ContentView;
 
 
-var CommentView = mcc.CommentView = View.extend({
+var CommentView = mcc.CommentView = ContentView.extend({
 
-  className: 'comment-view',
-
-  events: {},
-
-  template: _.template('\
-  '),
-
-  initialize: function() {},
-
-  render: function() {
-    this.$el.empty();
-
-    this.$el.append(this.template(this.model._data));
-
-    return this;
-  }
+  className: ContentView.prototype.className + ' comment-view'
 
 });
 
