@@ -1,6 +1,7 @@
 (function() {
 
 var util = mcc.util;
+var objManager = mcc.objManager;
 
 
 var Model = mcc.Model = function(data, options) {
@@ -17,7 +18,9 @@ _.extend(Model.prototype, Backbone.Events, {
 
   defaults: {},
 
-  initialize: function(data, options) {},
+  initialize: function(data, options) {
+    objManager.everything.push(this);
+  },
 
   setData: function(data) {
     var that = this;

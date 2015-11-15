@@ -4,6 +4,7 @@ var util = mcc.util;
 var wiring = mcc.wiring = {};
 
 var objManager = mcc.objManager = {};
+var everything = objManager.everything = [];
 
 
 var backboneExtend = Backbone.Model.extend;
