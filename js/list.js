@@ -35,6 +35,10 @@ _.extend(List.prototype, Backbone.Events, {
     };
   },
 
+  length: function() {
+    return this._members.length;
+  },
+
   each: function(fn) {
     _.each(this._members, fn);
   },
