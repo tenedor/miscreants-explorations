@@ -15,6 +15,8 @@ var PostView = mcc.PostView = ContentView.extend({
   '),
 
   initialize: function() {
+    this.__super__.initialize.apply(this, arguments);
+
     this.contentView = new ContentView({model: this.model});
   },
 

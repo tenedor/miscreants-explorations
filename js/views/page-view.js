@@ -32,6 +32,8 @@ var PageView = mcc.PageView = View.extend({
   '),
 
   initialize: function() {
+    this.__super__.initialize.apply(this, arguments);
+
     this.newPost = new NewContentView({
       model: this.model.user(),
       ModelConstructor: PostModel

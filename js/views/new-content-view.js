@@ -26,6 +26,7 @@ var NewContentView = mcc.NewContentView = View.extend({
   '),
 
   initialize: function(options) {
+    this.__super__.initialize.apply(this, arguments);
     this.ModelConstructor = options.ModelConstructor || ContentModel;
   },
 
