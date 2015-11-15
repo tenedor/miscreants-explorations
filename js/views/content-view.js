@@ -10,7 +10,8 @@ var ContentView = mcc.ContentView = View.extend({
 
   template: _.template('\
     <div class="header">\
-      Post from <span class="author"><%= author %></span>\
+      <span class="prefix-text"><%= headerPrefixText %></span>\
+      <span class="author"><%= author %></span>\
       at <span class="timestamp"><%= timestamp %></span>\
     </div>\
     <p class="text"><%= text %></p>\
@@ -18,11 +19,14 @@ var ContentView = mcc.ContentView = View.extend({
   '),
 
   render: function() {
-    var src;
+    var parameters, src;
 
     this.$el.empty();
 
-    this.$el.append(this.template(this.model._data));
+    parameters = _.defaults({}, this.model._data, this.options, {
+      headerPrefixText: ""
+    });
+    this.$el.append(this.template(parameters));
 
     if (this.model.hasImage()) {
       src = this.model.fullImagePath();

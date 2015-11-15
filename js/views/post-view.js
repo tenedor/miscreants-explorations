@@ -23,7 +23,10 @@ var PostView = mcc.PostView = ContentView.extend({
   initialize: function() {
     this.__super__.initialize.apply(this, arguments);
 
-    this.contentView = new ContentView({model: this.model});
+    this.contentView = new ContentView({
+      model: this.model,
+      headerPrefixText: "Post from"
+    });
 
     this.newComment = new NewContentView({
       model: mcc.data.models.user,
