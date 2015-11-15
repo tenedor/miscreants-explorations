@@ -136,30 +136,42 @@ post-styling()
   .new-content-view
     post-styling()
 
-    .fields > *
-      margin-bottom inner-vertical-spacing
+.new-content-view
+  .fields > *
+    margin-bottom inner-vertical-spacing
 
-    .submit-button-container
-      display: inline-block
-      width: 100%
+  .submit-button-container
+    display: inline-block
+    width: 100%
 
-      // floating the button inexplicably adds 5px bottom margin, so undo it
-      margin-bottom: -5px
+    // floating the button inexplicably adds 5px bottom margin, so undo it
+    margin-bottom: -5px
 
-      .submit-button
-        float: right
+    .submit-button
+      float: right
+
+.content-view
+  .header
+    color: #888
+    margin-bottom: inner-vertical-spacing
+
+    .author
+      font-weight: 700
 
 .post-view
   post-styling()
 
   .content
-    .header
-      color: #888
-      margin-bottom: inner-vertical-spacing
-
-      .author
-        font-weight: 700
+    margin-bottom: outer-vertical-spacing
 
     .image img
       max-width: 100%
-      max-width: 360px
+      max-height: 360px
+
+  .comments
+    .comment-view
+      margin-bottom: outer-vertical-spacing
+
+    .image img
+      max-width: 90%
+      max-height: 180px
